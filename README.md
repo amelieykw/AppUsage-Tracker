@@ -15,7 +15,7 @@ Yu Kaiwen - yu.kaiwen.amelie@gmail.com
 9. Conclusion
 
 # Introduction 
-In this report, I will first introduce my application AppUsage Tracker. Then I will describe in detail the whole process for a user to interact this application. From the detailed description of interacting process, I can abstract the main functionalities of this application, so that I can transform these literal descriptions of functionalities to the technical problems and build these components of application. After I combined these components, there comes the global architecture of application. I’ll explain the reason that I build this architecture and the tools that I use for build it before I talk about the plan of project.
+In this report, I will first introduce my application **__AppUsage Tracker__**. Then I will describe in detail the whole process for a user to interact this application. From the detailed description of interacting process, I can abstract the main functionalities of this application, so that I can transform these literal descriptions of functionalities to the technical problems and build these components of application. After I combined these components, there comes the global architecture of application. I’ll explain the reason that I build this architecture and the tools that I use for build it before I talk about the plan of project.
 
 # Description of Application 
 AppUsage Tracker is an Android application who tracks the usage of all the applications on that device who installs this application. 
@@ -35,7 +35,7 @@ It offers the user a functionality to analyse these information of the usage of 
 # Technical Details for Each Functionality
 
 ### For realising the 4.1 functionality
-I’ll use the UsageStatsManager of the android.app.usage API to get the information of usage of each application from the android device. This API is new after the android 5.0. 
+I’ll use the **UsageStatsManager** of the **android.app.usage API** to get the information of usage of each application from the android device. This API is new after the android 5.0. 
 
 What information of usage can the android device provide? It records these main information for each application : 
 - The last used time
@@ -43,6 +43,8 @@ What information of usage can the android device provide? It records these main 
 - The timestamps that in that day, the app changed its statues (from foreground to background, from background to foreground)
 - The timestamps that the app changed its settings (from landscape to portrait, from portrait to landscape)
 - The identifier information of the app (the package name, the activity name etc.)
+
+![Android UsageStatesManager](https://github.com/amelieykw/AppUsage-Tracker/blob/master/Android%20UsageStatesManager.png)
 
 The android device stores on the device 7 days’ daily information of usage,  4 weeks’ weekly information of usage, 6 months’ monthly information of usage and 2 years’ yearly information of usage. 
 
@@ -59,12 +61,12 @@ The whole process will be like :
 
 
 ### For realising the 4.2 functionality
-it should use an algorithm of sorting. 
+it should use **an algorithm of sorting**. 
 
 Since the list of information of usage has three columns, the application’s name, the total time of usage and the total open times of this application, the algorithm of sorting can sort the whole list according to either of these two attributes (time/times) of each application in descending order or increasing order.
 
 ### For realising the 4.3 functionality
-I’ll use the clustering method, K-Means, of undirected Data Mining to analyse a list of two-attribute data. 
+I’ll use the clustering method, **K-Means**, of undirected Data Mining to analyse a list of two-attribute data. 
 
 Since both the total time of usage and the total open times can only be positive, all the data collected can only show up in the first quadrant. The horizontal axis is the total time of usage. The vertical axis is the total open times. 
 We can imagine the location of total data as a square map whose borders are decided by the most outside data. If we divide this square map in this first quadrant into 4 quadrants again, then the object of the clustering method, K-Means, is to divide the data into 4 natural groups and find the group which locates itself in the first quadrant of this square map (if there’s no such group, then find the group in the fourth quadrant of this square map, since in this application, we suppose that the total time of usage is more important for the user than the total open times. It gives more weight to the total time than the total open times.) 
@@ -76,6 +78,32 @@ when I get the information of usage of applications on the android device, I can
 
 # Global Architecture
 
+- **Activity** : 
+- **ViewModel** : 
+  - Provide the data for activity
+  - Handle the communication with the business part of data handling 
+  - **LiveData** :
+    - an observable data holder. 
+    - It lets the components in your app observe LiveData objects for changes without creating explicit and rigid dependency paths between them. 
+- **Repository** :
+  - Responsible for handling data operations
+  - Provide a clean API to the rest of app
+  - Knows :
+    - Where to get the data from
+    - What API calls to make
+    - When data is updated
+  - Can be as mediators between different data sources (in this project, two data sources : a remote server & a local SQLite database)
+- **Remote Data Source** :
+  - Our backend provides a REST API
+  - **Retrofit** library to access our backend
+- **Persistent Model (Room + SQLite) Module** :
+  - What if the user leaves the app and comes back hours later, the Android OS has killed the process, the data has lost? Should it fetch the data again from the remote data source? No. We can persist the data locally.
+  - **Room** :
+    - An object mapping library
+    - Provides local data persistence with minimal boilerplate code
+    - It also allows observing changes to the database data (including collections and join queries), exposing such changes via LiveData objects. 
+
+![Android App Architecture](https://github.com/amelieykw/AppUsage-Tracker/blob/master/Android%20App%20Architecture.png)
 
 # Justification of the Usage of Techniques 
 # Plan of Project
