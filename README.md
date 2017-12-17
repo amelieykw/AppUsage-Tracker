@@ -50,6 +50,14 @@ In order to allow the user to check the results of the previous each time’s re
 
 For simplicity, the user can only check the daily information of usage of the day started from the moment the user asks to the previous moment one-day ago. Similarly, the weekly information of usage of the week started from the moment the user asks to the previous moment one-week  ago, the monthly information of usage of the month started from the moment the user asks to the previous moment one-month ago, the yearly information of usage of the year started from the moment the user asks to the previous moment one-year ago.
 
+The whole process will be like : 
+1. The user opens this application
+2. The user clicks the button to get the list of information of usage
+3. once this collection of data is done, the data will be stored on the remote server automatically
+4. This application asks the remote server to get the information of usage and stores the data in JSON form got from the remote server to the local SQLite database.
+5. This application retrieves the parts of data it needs from the data stored locally and shows to the user.
+
+
 ### For realising the 4.2 functionality
 it should use an algorithm of sorting. 
 
