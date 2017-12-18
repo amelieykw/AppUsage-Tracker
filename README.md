@@ -4,15 +4,15 @@
 Yu Kaiwen - yu.kaiwen.amelie@gmail.com
 
 # Contents
-1. Introduction
-2. Description of Application 
-3. Scenario of Execution
-4. Principal Functionalities
-5. Each Components of Application
-6. Global Architecture  
-7. Justification of the Usage of Techniques  
-8. Plan of Project (Sprint etc...)
-9. Conclusion
+1. [Introduction](https://github.com/amelieykw/AppUsage-Tracker#Introduction)
+2. [Description of Application](https://github.com/amelieykw/AppUsage-Tracker#Description-of-Application)
+3. [Scenario of Execution](https://github.com/amelieykw/AppUsage-Tracker#Scenario-of-Execution)
+4. [Principal Functionalities](https://github.com/amelieykw/AppUsage-Tracker#Principal-Functionalities)
+5. [Each Components of Application](https://github.com/amelieykw/AppUsage-Tracker#Each-Components-of-Application)
+6. [Global Architecture](https://github.com/amelieykw/AppUsage-Tracker#Global-Architecture)
+7. [Justification of the Usage of Techniques](https://github.com/amelieykw/AppUsage-Tracker#Justification-of-the-Usage-of-Techniques)
+8. [Plan of Project](https://github.com/amelieykw/AppUsage-Tracker#Plan-of-Project)
+9. [Conclusion](https://github.com/amelieykw/AppUsage-Tracker#Conclusion)
 
 # Introduction 
 In this report, I will first introduce my application **__AppUsage Tracker__**. Then I will describe in detail the whole process for a user to interact this application. From the detailed description of interacting process, I can abstract the main functionalities of this application, so that I can transform these literal descriptions of functionalities to the technical problems and build these components of application. After I combined these components, there comes the global architecture of application. I’ll explain the reason that I build this architecture and the tools that I use for build it before I talk about the plan of project.
