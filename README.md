@@ -11,7 +11,7 @@ Yu Kaiwen - yu.kaiwen.amelie@gmail.com
 5. Each Components of Application
 6. Global Architecture  
 7. Justification of the Usage of Techniques  
-8. Plan of Project
+8. Plan of Project (Sprint etc...)
 9. Conclusion
 
 # Introduction 
@@ -25,6 +25,20 @@ It shows a no-ordered list of the total time of usage and the total open times f
 It offers the user a functionality to analyse these information of the usage of applications to know the three applications that the user used the most frequently and the longest time in that day or that month or that year. These three applications can be seen as what the user most needs and likes. The user can add these three applications’ shortcuts to the welcome screen of this application by settings so that the user can redirect to these applications easily. The user can add the three most favorite application applications of a day (or a week or a month or a year) by settings.
 
 # Scenario of Execution
+
+| User   | Technique |
+| ------------- | ------------- |
+| 1. Open the application AppUsage Tracker |   |
+| 2.Click the button “Show the usage information” (ex. Today’s track data)  | 2.1.This app gets the data from the android device.  |
+|   | 2.2.Once this app gets the data, it stores the data on the remote server. |
+|   | 2.3.This app fetches the data from the remote server and stores the data into a local SQLite database.  |
+|   | 2.4.This app retrieves some parts of data it needs from the data in the local SQLite database and shows the data as a list on the screen to the user.  |
+| 3.Click the filter button to sort the list in descending/increasing order according to the total time of usage or the total open times  | 3.1.Before using the algorithm of sorting to sort the list, put the current list into the cache.  |
+|   | 3.2. Use the algorithm of sorting to sort the list according to the demands of the user and put the result list into cache after each time’s sorting.  |
+| 4.Click the button to analyse the user’s 3 most favorite applications (ex. Of this day)  | 4.1.Use the clustering method K-Means to analyse the data of the current list on the current screen to get the 3 most favorite applications. |
+|   | 4.2.Show the result of analysis as 3 shortcuts on the screen which allow the user to redirect to these 3 apps from this app. |
+| 5.The user can see the information of usage (raw data collected, not the analysis) of another day by choosing that day through the calendar. If the user did the analysis that day, there’ll be the data. If not, the user will see an empty screen. | 5.Since each time the user makes a collection of data and do an analysis, these data will be stored on remote server and the local SQLite database. We can first check whether the data of this day is in the local database or not. If not, fetch the data from the remote server.  |
+| 6.The user can do all above with the weekly/monthly/yearly data by changing the settings.  | 6.Add a setting button for this functionality.  |
 
 # Principal Functionalities
 1. Show a no-ordered list of the total time of usage and the total open times for each application (daily/weekly/monthly/yearly)
@@ -107,6 +121,35 @@ when I get the information of usage of applications on the android device, I can
 
 # Justification of the Usage of Techniques 
 # Plan of Project
+
+| Days  | Value | User Stories | Technical Tasks |
+| ------------- | ------------- | ------------- | ------------- |
+|   |   | 1. Open the application AppUsage Tracker   |   |
+| 1/2  | 10  | 2.Click the button “Show the usage information” (ex. Today’s track data)  | 2.1.This app gets the data from the android device.  |
+| 1  | 10  |   | 2.2.Once this app gets the data, it stores the data on the remote server.  |
+| 2  | 10  |   | 2.3.This app fetches the data from the remote server and stores the data into a local SQLite database.  |
+| 2  | 20  |   | 2.4.This app retrieves some parts of data it needs from the data in the local SQLite database and shows the data as a list on the screen to the user.  |
+| 2  | 40  | 3.Click the filter button to sort the list in descending/increasing order according to the total time of usage or the total open times  | 3.1.Before using the algorithm of sorting to sort the list, put the current list into the cache.  |
+| 3  | 50  |   | 3.2. Use the algorithm of sorting to sort the list according to the demands of the user and put the result list into cache after each time’s sorting.  |
+| 4  | 10 | 4.Click the button to analyse the user’s 3 most favorite applications (ex. Of this day)  | 4.1.Use the clustering method K-Means to analyse the data of the current list on the current screen to get the 3 most favorite applications.  |
+| 1  | 30  |   | 4.2.Show the result of analysis as 3 shortcuts on the screen which allow the user to redirect to these 3 apps from this app.  |
+| 2  | 50 | 5.The user can see the information of usage (raw data collected, not the analysis) of another day by choosing that day through the calendar. If the user did the analysis that day, there’ll be the data. If not, the user will see an empty screen. | 5.Since each time the user makes a collection of data and do an analysis, these data will be stored on remote server and the local SQLite database. We can first check whether the data of this day is in the local database or not. If not, fetch the data from the remote server.  |
+| 3  | 30 | 6.The user can do all above with the weekly/monthly/yearly data by changing the settings.  | 6.Add a setting button for this functionality.  |
+
+Total days = 20 (4 weeks)
+
+Value : 
+10 - most important
+50 - least important
+
+| Sprint  | Content |
+| ------------- | ------------- |
+| Sprint 00 (WEEK 00 : 09-17 Dec, 2017) | Analyse the project & Write this description of project |
+| Sprint 01 (WEEK 01 : 18-24 Dec, 2017) | Technical user stories 2.1 & 2.2 & 2.3 & 2.4   |
+| Sprint 02 (WEEK 02 : 25-31 Dec, 2017) | Technical user stories 4.1 & 4.2   |
+| Sprint 03 (WEEK 03 : 01-07 Jan, 2018) | Technical user stories 3.1 & 3.2  |
+| Sprint 04 (WEEK 04 : 08-14 Jan, 2018) | Technical user stories 5 & 6    |
+
 # Conclusion
 
 
